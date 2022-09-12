@@ -75,5 +75,5 @@ def check_and_connect():
     s.enter(int(interval), 1, check_and_connect)
 
 with daemon.DaemonContext():
-    s.enter(int(interval), 1, check_and_connect)
+    s.enter(1, 1, check_and_connect)
     s.run()
