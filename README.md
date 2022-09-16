@@ -1,12 +1,27 @@
 # Residsss Connect
 Developpé par Rhadamanthe 76 KIN 220
 
-C'est un petit code python qui run en arrière plan afin de se connecter au wifi de la résidence et de palier au captive portal déplorable.
+C'est un ensemble de codes permetant de se connecter de manière automatique (ou pseudo-automatique) au wifi de la res, dont le système d'authentification est minable.
 
-Au premier lancement, il faut rentrer les 3 informations suivantes:
-- Username
-- Password
-- Connectivity check period
-		C'est la fréquence (en sec) à laquelle le programme va vérifier votre connexion au wifi et vous connecter si vous ne l'êtes plus.
+J'ai actuelement réalisé 1 méthode de conection:
 
-Ces informations sont enregistrées dans `C:\Users\<you>\AppData\Local\Acme\SuperApp` et ne vous seront plus demandés.
+1. [Script Navigateur](Script Navigateur)
+	1. Installer TamperMonkey
+	2. Installer le script
+
+## Script Navigateur
+======================
+C'est un script JS qui est exécuté dès que le navigateur ouvre la page de connexion au wifi, il recherche les champs d'authentification, les remplit et envoie le formulaire.
+
+### Installer TamperMonkey
+Il suffit d'aller sur le lien suivant: [TamperMonkey](https://www.tampermonkey.net)
+Et de suivre les instructions pour installer l'extension navigateur
+
+### Installer le script
+Il faut télécharger le script ici: [release]()
+Une fois l'extension installée, aller dans les préférences de l'extension, onglet utilitaire (en haut a droite), puis importer. Sélectionnez le fichier zip téléchargé et validez l'importation.
+
+### Utilisation
+Pour se connecter au wifi, il suffit d'ouvrir le navigateur et d'aller sur n'importe quelle page, vous serez redirigé (avec ou sans message) vers la page de connexion au wifi, et le script vous connectera.
+
+
