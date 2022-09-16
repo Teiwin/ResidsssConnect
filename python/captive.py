@@ -58,18 +58,21 @@ except FileNotFoundError:
 def check_and_connect():
     google = 'http://google.com'
     r = requests.get(google)
+    print(r.text)
 
-    match = re.search(r'http://(\d+\.\d+\.\d+\.\d+):?\d*/fgtauth\?([a-z0-9]+)', r.text)
+    match = re.search(r'(http://\d+\.\d+\.\d+\.\d+:?\d*/)fgtauth\?([a-z0-9]+)', r.text)
+
 
     if match:
         # http://10.254.0.254:1000/
 
         magic = match.group(2)
         url = match.group(1)
-        data = {"magic": magic, "username": username, "password": password}
+        print(url, magic)
+        data = {"magic": magic, "username": username, "password": password, "4Tredir": "http://detectportal.firefox.com/canonical.html"}
         # to avoid basic bot detection
         headers = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:104.0) Gecko/20100101 Firefox/104.0"}
-        time.sleep(random.uniform(1, 2))
+        time.sleep(random.uniform(0, 1))
         requests.post(url, data=data, headers=headers)
 
     else:
@@ -78,6 +81,7 @@ def check_and_connect():
     s.enter(int(interval) + random.uniform(-1, 2), 1, check_and_connect)
 
 
-with daemon.DaemonContext():
-    s.enter(1, 1, check_and_connect)
-    s.run()
+
+#with daemon.DaemonContext():
+s.enter(1, 1, check_and_connect)
+s.run()
