@@ -23,11 +23,12 @@ Et de suivre les instructions pour installer l'extension navigateur
 (il semblerait que cette étape soit automatique sur firefox)  
 Il faut télécharger le fichier `Auto_onnect.user.js` ici: [release](https://github.com/Teiwin/ResidsssConnect/releases)  
 Une fois l'extension installée :
-(cliquer sur l'extension > tableau de bord > ongletutilitaire > importer > selectionner le fichier `Auto_onnect.user.js`)
+(aller dans les paramètres de l'extension > onglet utilitaire > importer > selectionner le fichier `Auto_onnect.user.js`)  
+Puis valider l'instalation du script.
 
 ### Rentrer les identifiants
 Il faut ensuite cliquer sur modifier le script pour y rentrer les identifiants:  
-(cliquer sur l'extension > tableau de bord > onglet Usersctipts installés > icone modifier le script)  
+(paramètres de l'extension > onglet Usersctipts installés > icone modifier le script)  
 Renter le nom d'utilisateur et le mot de passe (respectivement **ligne 13 et 14**) entre les guillemets.
 
 ### Utilisation
