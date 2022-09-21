@@ -7,6 +7,7 @@ import android.net.CaptivePortal;
 import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.http.SslError;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -47,10 +48,12 @@ public class MainActivity extends AppCompatActivity {
         queue = Volley.newRequestQueue(this);
 
         // if the app started by a captive portal sign in intent, get the captive portal
-        if (ConnectivityManager.ACTION_CAPTIVE_PORTAL_SIGN_IN.equals(intent.getAction())) {
-            net = intent.getParcelableExtra(ConnectivityManager.EXTRA_NETWORK);
-            captivePortal = intent.getParcelableExtra(ConnectivityManager.EXTRA_CAPTIVE_PORTAL);
-        }
+        //if (ConnectivityManager.ACTION_CAPTIVE_PORTAL_SIGN_IN.equals(intent.getAction())) {
+        net = intent.getParcelableExtra(ConnectivityManager.EXTRA_NETWORK);
+        captivePortal = intent.getParcelableExtra(ConnectivityManager.EXTRA_CAPTIVE_PORTAL);
+
+
+
 
         final WebViewClient webClient = new WebViewClient() {
             @Override
@@ -65,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
                         s -> {
                         });
                 Log.d(TAG, "onPageFinished: Credentials Injected");
-                captivePortal.reportCaptivePortalDismissed();
+                reportCaptivePortalDismissed();
                 finish();
             }
         };
@@ -76,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
         web.getSettings().setJavaScriptEnabled(true);
         Log.d(TAG, "Javascript enabled");
 
+
         textView = findViewById(R.id.info_view);
         textView.setText(R.string.info_starting);
     }
@@ -83,9 +87,21 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        if (net != null && captivePortal != null) {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        if (net == null) {
+            for (Network network : cm.getAllNetworks()) {
+                if (cm.getNetworkInfo(network).getType() == ConnectivityManager.TYPE_WIFI) {
+                    Log.d(TAG, "onStart: Setting process network to " + network);
+                    net = network;
+                }
+            }
+        }
+
+
+        Log.d(TAG, "onStart: net " + net);
+        if (net != null) {
             // make sure to use the network controlled by the captive portal to trigger it
-            ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
             cm.bindProcessToNetwork(net);
 
             // get the captive portal url and act on it
@@ -103,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
                                 web.loadUrl(url);
                             } else {
                                 textView.setText(R.string.info_no_portal);
-                                captivePortal.reportCaptivePortalDismissed();
+                                reportCaptivePortalDismissed();
                             }
 
                     },
@@ -112,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
                             textView.setText(R.string.info_starting);
                             web.loadUrl(error.networkResponse.headers.get("Location"));
                         } else {
-                            captivePortal.reportCaptivePortalDismissed();
+                            reportCaptivePortalDismissed();
                             textView.setText(R.string.network_error);
                         }
                     });
@@ -124,7 +140,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         Log.d(TAG, "onDestroy: reporting captive portal dismissed");
-        captivePortal.reportCaptivePortalDismissed();
+        reportCaptivePortalDismissed();
         Log.d(TAG, "onDestroy: END");
+    }
+
+    protected void reportCaptivePortalDismissed() {
+        if (captivePortal != null) {
+            captivePortal.reportCaptivePortalDismissed();
+        }
     }
 }

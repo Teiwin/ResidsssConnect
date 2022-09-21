@@ -6,6 +6,8 @@
     <string name="dialog_user_id">Please enter your userId</string>
     <string name="info_starting">Starting</string>
     <string name="info_no_portal">Portal not detected</string>
+    <string name="info_no_wifi">Waiting for WiFi</string>
     <string name="network_error">Response error</string>
     <string name="info_portal_injecting">Injecting credentials</string>
+    <string name="connect_button">Connect</string>
 </resources>
