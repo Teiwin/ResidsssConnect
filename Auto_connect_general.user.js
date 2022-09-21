@@ -67,5 +67,4 @@
         couple[0][0].value = "ERROR: MULTIPLE FORMS";
     }
 
-    // Your code here...
 })();
