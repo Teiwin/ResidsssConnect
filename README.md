@@ -5,11 +5,26 @@ C'est un ensemble de codes permetant de se connecter de manière automatique (ou
 
 J'ai actuelement réalisé 1 méthode de conection:
 
-1. Script Navigateur
+1. Application Android
+	1. Fonctionnement général
+	2. Fonctionnement sur Samsung
+2. Script Navigateur
 	1. Installer TamperMonkey
 	2. Installer le script
 	3. Rentrer les identifiants
 	4. Utilisation
+
+## Application Android
+L'application est disponible ici: [release](https://github.com/Teiwin/ResidsssConnect/releases)  
+
+### Fonctionnement général
+Rentrer l'identifiant et le mot de passe dans l'application.  
+Lors de la connexion au wifi, l'application est proposée comme méthode disponible. **Selectionner une fois seulement** sinon, l'appli vas envoyer vos identifiants a tous les réseaux wifi nécéssitant une connexion!  
+**si l'appli n'est pas proposée**, suivre le Fonctionnement sur Samsung
+
+### Fonctionnement sur Samsung
+L'appli n'est pas proposée dans les méthodes d'authentification. Il faut alors l'ouvrir et appuyer sur le bouton "connect", **puis** déclancher la notification de connexion, qui détectera que le téléphone est déjà connecté.
+
 
 ## Script Navigateur
 
