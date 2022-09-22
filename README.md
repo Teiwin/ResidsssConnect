@@ -3,7 +3,7 @@ Developpé par Rhadamanthe 76 KIN 220
 
 C'est un ensemble de codes permetant de se connecter de manière automatique (ou pseudo-automatique) au wifi de la res, dont le système d'authentification est minable.
 
-J'ai actuelement réalisé 1 méthode de conection:
+J'ai actuelement réalisé 2 méthodes de conection:
 
 1. Application Android
 	1. Fonctionnement général
@@ -24,7 +24,6 @@ Lors de la connexion au wifi, l'application est proposée comme méthode disponi
 
 ### Fonctionnement sur Samsung
 L'appli n'est pas proposée dans les méthodes d'authentification. Il faut alors l'ouvrir et appuyer sur le bouton "connect", **puis** déclancher la notification de connexion, qui détectera que le téléphone est déjà connecté.
-
 
 ## Script Navigateur
 
