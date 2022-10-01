@@ -5,14 +5,15 @@ C'est un ensemble de codes permetant de se connecter de manière automatique (ou
 
 J'ai actuelement réalisé 2 méthodes de conection:
 
-1. Application Android
-	1. Fonctionnement général
-	2. Fonctionnement sur Samsung
-2. Script Navigateur
-	1. Installer TamperMonkey
-	2. Installer le script
-	3. Rentrer les identifiants
-	4. Utilisation
+- [Residsss Connect](#residsss-connect)
+  - [Application Android](#application-android)
+    - [Fonctionnement général](#fonctionnement-général)
+    - [Fonctionnement sur Samsung](#fonctionnement-sur-samsung)
+  - [Script Navigateur](#script-navigateur)
+    - [Installer TamperMonkey](#installer-tampermonkey)
+    - [Installer le script](#installer-le-script)
+    - [Utilisation](#utilisation)
+- [RESET SCRIPT NAVIGATEUR](#reset-script-navigateur)
 
 ## Application Android
 L'application est disponible ici: [release](https://github.com/Teiwin/ResidsssConnect/releases)  
@@ -35,17 +36,19 @@ Et de suivre les instructions pour installer l'extension navigateur
 
 ### Installer le script
 (il semblerait que cette étape soit automatique sur firefox)  
-Il faut télécharger le fichier `Auto_onnect.user.js` ici: [release](https://github.com/Teiwin/ResidsssConnect/releases)  
+Il faut télécharger le fichier `Auto_connect.user.js` ici: [release](https://github.com/Teiwin/ResidsssConnect/releases)  
 Une fois l'extension installée :
-(aller dans les paramètres de l'extension > onglet utilitaire > importer > selectionner le fichier `Auto_onnect.user.js`)  
+(aller dans les paramètres de l'extension > onglet utilitaire > importer > selectionner le fichier `Auto_connect.user.js`)  
 Puis valider l'instalation du script.
 
-### Rentrer les identifiants
-Il faut ensuite cliquer sur modifier le script pour y rentrer les identifiants:  
-(paramètres de l'extension > onglet Usersctipts installés > icone modifier le script)  
-Renter le nom d'utilisateur et le mot de passe (respectivement **ligne 13 et 14**) entre les guillemets.
-
 ### Utilisation
-Pour se connecter au wifi, il suffit d'ouvrir le navigateur et d'aller sur n'importe quelle page, vous serez redirigé (avec ou sans message) vers la page de connexion au wifi, et le script vous connectera.
+Pour se connecter au wifi, il suffit d'ouvrir le navigateur et d'aller sur n'importe quelle page, vous serez redirigé (avec ou sans message) vers la page de connexion au wifi.  
+La première fois que vous vous connecterez, il vous sera nécessaire de rentrer les identifiants. Ensuite, ils seront automatiquement enregistrés et le script vous connectera.
+
+# RESET SCRIPT NAVIGATEUR
+Installer de la même manière le script `Auto_Connect_RESET.user.js` disponible ici: [release](https://github.com/Teiwin/ResidsssConnect/releases)  
+Aller dans les parramètres de l'extension > onglet Userscripts Installés > désactiver ResidsssConnect et activer Reset ResidsssConnect.  
+Suivre les instructions [Utilisation](#utilisation) pour se connecter une fois.  
+**faire la marche précédente pour réactiver `ResidsssConnect` et désactiver `Reset ResidsssConnect`**
 
 
