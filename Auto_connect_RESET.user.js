@@ -1,19 +1,21 @@
 // ==UserScript==
-// @name         ResidsssConnect
-// @version      1.3
-// @description  Connection automatique au réseau wifi de la cité U (l'authentification est terrible)
+// @name         Reset ResidsssConnect
+// @version      1
+// @description  this is to reset the ResidsssConnect credentials if you misstype it
 // @author       Rhadamanthe 76 KIN 220
 // @include      /http:\/\/\d+\.\d+\.\d+\.\d+:?\d*\/fgtauth\?[a-z0-9]+/
-// @updateURL    https://github.com/Teiwin/ResidsssConnect/raw/main/Auto_connect.user.js
-// @downloadURL  https://github.com/Teiwin/ResidsssConnect/raw/main/Auto_connect.user.js
+// @updateURL    https://github.com/Teiwin/ResidsssConnect/raw/main/Auto_connect_RESET.user.js
+// @downloadURL  https://github.com/Teiwin/ResidsssConnect/raw/main/Auto_connect_RESET.user.js
 // ==/UserScript==
 
-
-
 (function() {
-    // set the title
+    // remove old credentials, then continue the same script
+    localStorage.removeItem("ResidsssConnect_ft_pd");
+    localStorage.removeItem("ResidsssConnect_ft_un");
+
+     // set the title
     const title = document.getElementsByClassName("logo")[0];
-    title.innerHTML = "ResidsssConnect";
+    title.innerHTML = "ResidsssConnect: Reset";
     // add credits after the title
     const credits = document.createElement("h2");
     credits.innerHTML = "by Rhadamanthe 76";
@@ -29,14 +31,12 @@
 
     // handle credentials saving
     const handleSubmit = (e) => {
-        if (!localStorage.getItem("ResidsssConnect_ft_un")) {
-            localStorage.setItem("ResidsssConnect_ft_un", field_username.value)
-            console.log("username saved");
-        }
-        if (!localStorage.getItem("ResidsssConnect_ft_pd")) {
-            localStorage.setItem("ResidsssConnect_ft_pd", field_password.value);
-            console.log("password saved");
-        }
+        localStorage.setItem("ResidsssConnect_ft_un", field_username.value)
+        console.log("username saved");
+
+        localStorage.setItem("ResidsssConnect_ft_pd", field_password.value);
+        console.log("password saved");
+
         console.log("submited");
     };
 
@@ -54,9 +54,5 @@
     }
     if (!field_password.value){
         field_password.value = localStorage.getItem("ResidsssConnect_ft_pd");
-    }
-
-    if (field_username.value && field_password.value) {
-        form.submit();
     }
 })();
